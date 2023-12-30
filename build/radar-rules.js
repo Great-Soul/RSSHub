@@ -2201,7 +2201,11 @@
     ".":[ { title:"关键词",
         docs:"https://docs.rsshub.app/routes/social-media#bluesky-bsky",
         source:"/search",
-        target:(params, url) => `/bsky/keyword/${new URL(url).searchParams.get('q')}` } ] },
+        target:(params, url) => `/bsky/keyword/${new URL(url).searchParams.get('q')}` },
+      { title:"Post",
+        docs:"https://docs.rsshub.app/routes/social-media#bluesky-bsky",
+        source:"/profile/:handle",
+        target:"/bsky/profile/:handle" } ] },
   "btbtt20.com":{ _name:"BT之家",
     ".":[ { title:"分类",
         docs:"https://docs.rsshub.app/routes/multimedia#bt-zhi-jia",
@@ -12396,6 +12400,15 @@
         docs:"https://docs.rsshub.app/routes/new-media#panews-zhuan-ti",
         source:"/",
         target:"/panewslab/topic/:id" } ] },
+  "papers.cool":{ _name:"Cool Papers",
+    ".":[ { title:"Category",
+        docs:"https://docs.rsshub.app/routes/journal#cool-papers-category",
+        source:[ "/:category*" ],
+        target:(params) => {
+                    const category = params.category;
+
+                    return `/papers${category ? `/${category}` : ''}`;
+                } } ] },
   "paradigm.xyz":{ _name:"Paradigm",
     ".":[ { title:"Writing",
         docs:"https://docs.rsshub.app/routes/finance#paradigm",
